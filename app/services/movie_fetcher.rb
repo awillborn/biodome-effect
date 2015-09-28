@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class MovieFetcher
   class << self
@@ -12,31 +13,31 @@ class MovieFetcher
 
     def find_and_create_movie(title)
       data = open("http://www.omdbapi.com/?t=#{title}&r=json")
-      parsed_data = eval(data.read)
+      parsed_data = JSON.parse(data.string)
       create_movie(parsed_data)
     end
 
     def create_movie(data)
-      ratings                 = fetch_ratings(data[:imdbID])
-      ratings_male            = fetch_ratings(data[:imdbID], 'ratings-male')
-      ratings_female          = fetch_ratings(data[:imdbID], 'ratings-female')
-      ratings_under_18        = fetch_ratings(data[:imdbID], 'ratings-age_1')
-      ratings_male_under_18   = fetch_ratings(data[:imdbID], 'ratings-male_age_1')
-      ratings_female_under_18 = fetch_ratings(data[:imdbID], 'ratings-female_age_1')
-      ratings_18_29           = fetch_ratings(data[:imdbID], 'ratings-age_2')
-      ratings_male_18_29      = fetch_ratings(data[:imdbID], 'ratings-male_age_2')
-      ratings_female_18_29    = fetch_ratings(data[:imdbID], 'ratings-female_age_2')
-      ratings_30_44           = fetch_ratings(data[:imdbID], 'ratings-age_3')
-      ratings_male_30_44      = fetch_ratings(data[:imdbID], 'ratings-male_age_3')
-      ratings_female_30_44    = fetch_ratings(data[:imdbID], 'ratings-female_age_3')
-      ratings_45              = fetch_ratings(data[:imdbID], 'ratings-age_4')
-      ratings_male_45         = fetch_ratings(data[:imdbID], 'ratings-male_age_4')
-      ratings_female_45       = fetch_ratings(data[:imdbID], 'ratings-female_age_4')
+      ratings                 = fetch_ratings(data['imdbID'])
+      ratings_male            = fetch_ratings(data['imdbID'], 'ratings-male')
+      ratings_female          = fetch_ratings(data['imdbID'], 'ratings-female')
+      ratings_under_18        = fetch_ratings(data['imdbID'], 'ratings-age_1')
+      ratings_male_under_18   = fetch_ratings(data['imdbID'], 'ratings-male_age_1')
+      ratings_female_under_18 = fetch_ratings(data['imdbID'], 'ratings-female_age_1')
+      ratings_18_29           = fetch_ratings(data['imdbID'], 'ratings-age_2')
+      ratings_male_18_29      = fetch_ratings(data['imdbID'], 'ratings-male_age_2')
+      ratings_female_18_29    = fetch_ratings(data['imdbID'], 'ratings-female_age_2')
+      ratings_30_44           = fetch_ratings(data['imdbID'], 'ratings-age_3')
+      ratings_male_30_44      = fetch_ratings(data['imdbID'], 'ratings-male_age_3')
+      ratings_female_30_44    = fetch_ratings(data['imdbID'], 'ratings-female_age_3')
+      ratings_45              = fetch_ratings(data['imdbID'], 'ratings-age_4')
+      ratings_male_45         = fetch_ratings(data['imdbID'], 'ratings-male_age_4')
+      ratings_female_45       = fetch_ratings(data['imdbID'], 'ratings-female_age_4')
       is_biodome = is_biodome?(ratings)
 
       Movie.create({
-        title: data[:Title],
-        imdb_id: data[:imdbID],
+        title: data['Title'],
+        imdb_id: data['imdbID'],
         ratings: ratings,
         biodome:is_biodome,
         ratings_male:            ratings_male,
