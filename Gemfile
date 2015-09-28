@@ -18,8 +18,3 @@ gem 'rake'
 gem 'shotgun'
 
 gem 'nokogiri'
-
-group :test do
-  gem 'faker'
-  gem 'rspec'
-end
