@@ -1,0 +1,10 @@
+<div>
+  <div class='biodome-positive'>
+    <h3>Biodome Effect Positive Movies</h3>
+    <ul class="movie-list">
+      <% @movies.each do |movie| %>
+        <li><a href=<%="/movies/#{movie.id}"%>><%= movie.title %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

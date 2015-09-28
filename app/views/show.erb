@@ -1,0 +1,16 @@
+<div id="movie">
+  <p>
+    <span>
+      <%= @movie.title %>
+    </span>
+    <% if @movie.biodome %>
+      IS Biodome Effect Positive.
+    <% else %>
+      is NOT Biodome Effect Positive.
+    <% end %>
+  </p>
+
+  <ul>
+    <li><a href="/">search again</a></li>
+  </ul>
+</div>
