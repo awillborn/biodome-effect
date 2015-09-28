@@ -4,9 +4,14 @@
       <%= @movie.title %>
     </span>
     <% if @movie.biodome %>
-      IS Biodome Effect Positive.
+      IS Biodome Effect Positive on overall ratings.
     <% else %>
-      is NOT Biodome Effect Positive.
+      is NOT Biodome Effect Positive on overall ratings.
+    <% end %>
+  </p>
+  <p>
+    <% @biodome_effects.each do |cat| %>
+      <li><%= "Biodome Effect present among #{cat}" %></li>
     <% end %>
   </p>
 
